@@ -7,13 +7,14 @@ function ProductList({ onHomeClick }) {
     const [addedToCart, setAddedToCart] = useState({});
     const handleAddToCart = (product) => {
     dispatch(addItem(product)); 
-
+    
     setAddedToCart((prevState) => ({ 
         ...prevState, 
         [product.name]: true, 
     }));
 };
     const ProductList = () => {
+    const cartItems = useSelector((state) => state.cart);
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -221,7 +222,9 @@ function ProductList({ onHomeClick }) {
             ]
         }
     ];
-
+    const calculateTotalQuantity = () => {
+    return cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
     return(
         <div className='product-grid'>
             {plantsArray.map((category, index) => ( // Loop through each category in plantsArray

@@ -51,6 +51,9 @@ const CartItem = ({ onContinueShopping }) => {
     return unitPrice * item.quantity;
   };
 
+  const handleAddItem = () => {
+    dispatch(addItem(item));
+  };
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
